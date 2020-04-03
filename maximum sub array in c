@@ -1,0 +1,36 @@
+int max(int a, int b)
+{
+    if(a < b)
+    {
+        return b;
+    }
+    else
+    {
+        return a;
+    }
+}
+int maxSubArray(int* nums, int numsSize){
+    
+    int sumarr[numsSize];
+    int i;
+    sumarr[0] = *nums;
+    for(i =1 ; i< numsSize; i++)
+    {
+        sumarr[i] = 0;
+    }
+    
+    for(i=1; i< numsSize; i++)
+    {
+        sumarr[i] = max( *(nums + i), sumarr[i-1] + *(nums + i) ) ;
+        
+    }
+    int max = -2147483647;
+    for(i = 0; i< numsSize; i++)
+    {
+        if(sumarr[i] > max)
+        {
+            max = sumarr[i];
+        }
+    }
+    return max;
+}
